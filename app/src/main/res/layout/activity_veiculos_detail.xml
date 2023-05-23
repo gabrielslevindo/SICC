@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".pressentation.VeiculosDetail">
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Marca"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/edt_marca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Adicione a marca do veículo."
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Modelo"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/edt_modelo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Adicione o modelo do veículo"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Ano"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/edt_ano"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Adicione o ano do seu veículo."
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Placa"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/edt_placa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Adicione a placa do seu veículo."
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+
+
+
+    <Button
+        android:id="@+id/btn_done_veiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/black"
+        android:background="@color/purple_200"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:hint="CONCLUIR" />
+</LinearLayout>

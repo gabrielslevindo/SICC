@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".pressentation.LoginUser">
+
+    <TextView
+        android:id="@+id/tvSegundaTela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="exemplo"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/purple_200"
+        android:text="Alunos"/>
+
+    <Button
+        android:id="@+id/btn_fornecedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/purple_200"
+        android:text="fornecedores"/>
+
+    <Button
+        android:id="@+id/btn_veiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/purple_200"
+        android:text="veículos"/>
+
+
+</LinearLayout>

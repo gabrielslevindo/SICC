@@ -158,16 +158,17 @@ class AlunosDetail : AppCompatActivity() {
         finish()
 
     }
-    //mensagem de validação
-    private fun showMessage(view: View, message: String) {
 
-        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
-            .show()
-
-    }
 
 }
 
 
+//mensagem de validação
 
+private fun showMessage(view: View, message: String) {
+
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+        .setAction("Action", null)
+        .show()
+
+}

@@ -8,17 +8,14 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.cadastrodeclientes.AdapterAluno
 import com.example.cadastrodeclientes.Data.Aluno
 import com.example.cadastrodeclientes.Data.AppDataBase
 import com.example.cadastrodeclientes.R
+import com.example.cadastrodeclientes.SIECAplication
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 import java.io.Serializable
 
 class Alunos_list : AppCompatActivity() {
@@ -29,14 +26,13 @@ class Alunos_list : AppCompatActivity() {
         AdapterAluno(::onListItemClicked)
     }
 
-    private  val dataBase by lazy {
-         Room.databaseBuilder(
-            applicationContext,
-            AppDataBase::class.java,
-            "Alunos-database"
-        ).build()
+    lateinit var dataBase: AppDataBase
+
+
+    private val viewModel: AlunoViewModel by lazy {
+
+        AlunoViewModel.create(application)
     }
-    private val daoAluno by lazy { dataBase.DAOAluno() }
 
 
     // adapter
@@ -49,8 +45,9 @@ class Alunos_list : AppCompatActivity() {
 
             //Pegando Resultado
             val data = result.data
-            val taskAction = data?.getSerializableExtra(ALUNO_ACTION_RESULT) as AlunoAction?
-            val aluno:Aluno = taskAction!!.aluno
+            val alunoAction = data?.getSerializableExtra(ALUNO_ACTION_RESULT) as AlunoAction?
+            val aluno: Aluno? = alunoAction!!.aluno
+            viewModel.execute(alunoAction)
 
 
         }
@@ -61,12 +58,9 @@ class Alunos_list : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alunos_list)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
 
-        listFromDataBase()
         // Configura o RecyclerView
         val rvAluno: RecyclerView = findViewById(R.id.rv_student_list)
         rvAluno.adapter = adapter
@@ -78,48 +72,40 @@ class Alunos_list : AppCompatActivity() {
         }
     }
 
-    private fun execute(alunoAction: AlunoAction?) {
-        val aluno = alunoAction?.aluno ?: return
-        when (ActionTypeAluno.valueOf(alunoAction?.actiontype?:"")) {
-            ActionTypeAluno.DELETE -> deleteById(aluno.id)
-            ActionTypeAluno.CREATE -> insertIntoDataBase(aluno)
-            ActionTypeAluno.UPDATE -> updateIntoDataBase(aluno)
-        }
+    override fun onStart() {
+        super.onStart()
+
+        dataBase = (application as SIECAplication).getAppDataBase()
+
+        listFromDataBase()
+
+    }
+
+
+    /* private fun insertIntoDataBase(aluno: Aluno) {
+         CoroutineScope(IO).launch {
+             daoAluno.insert(aluno)
+             listFromDataBase()
+         }
+     }*/
+
+    private fun deleteAll() {
+        val alunoAction = AlunoAction(null, ActionTypeAluno.DELETE_ALL.name)
+
+        viewModel.execute(alunoAction)
     }
 
     private fun listFromDataBase() {
-        CoroutineScope(IO).launch {
-            val myDataBaseList: List<Aluno> = daoAluno.getAll()
-            adapter.submitList(myDataBaseList)
-        }
-    }
+        val listObserverAluno = Observer<List<Aluno>> { listAluno ->
+            //obeserver
 
-    private fun insertIntoDataBase(aluno: Aluno) {
-        CoroutineScope(IO).launch {
-            daoAluno.insert(aluno)
-            listFromDataBase()
-        }
-    }
+            adapter.submitList(listAluno)
 
-    private fun deleteAll() {
-        CoroutineScope(IO).launch {
-            daoAluno.deleteAll()
-            listFromDataBase()
-        }
-    }
 
-    private fun deleteById(id: Int) {
-        CoroutineScope(IO).launch {
-            daoAluno.deleteById(id)
-            listFromDataBase()
         }
-    }
+        viewModel.AlunoListLiveData.observe(this@Alunos_list, listObserverAluno)
 
-    private fun updateIntoDataBase(aluno: Aluno) {
-        CoroutineScope(IO).launch {
-            daoAluno.update(aluno)
-            listFromDataBase()
-        }
+
     }
 
     private fun onListItemClicked(aluno: Aluno) {
@@ -152,18 +138,17 @@ class Alunos_list : AppCompatActivity() {
 }
 
 
-
 enum class ActionTypeAluno {
 
-
     DELETE,
+    DELETE_ALL,
     UPDATE,
     CREATE
 
 }
 
 data class AlunoAction(
-    val aluno: Aluno,
+    val aluno: Aluno?,
     val actiontype: String
 
 ) : Serializable

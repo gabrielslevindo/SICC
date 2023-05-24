@@ -1,5 +1,6 @@
 package com.example.cadastrodeclientes.Data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 
@@ -10,7 +11,7 @@ interface DAOAluno {
     fun insert(aluno: Aluno)
 
     @Query("Select * from aluno")
-    fun getAll(): List<Aluno>
+    fun getAll():LiveData<List<Aluno>>
 
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

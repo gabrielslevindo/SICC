@@ -32,7 +32,7 @@ class FornecedoresDetail : AppCompatActivity() {
         fun start(context: Context, fornecedor: Fornecedor?): Intent {
 
 
-            val intent = Intent(context, Alunos_list::class.java)
+            val intent = Intent(context, FornecedoresDetail::class.java)
 
                 .apply {
 

@@ -23,7 +23,7 @@ class Alunos_list : AppCompatActivity() {
 
     // Variável preguiçosa (lazy) para inicializar o AdapterAluno
     private val adapter: AdapterAluno by lazy {
-        AdapterAluno(::onListItemClicked)
+        AdapterAluno(::onListItemClickedAluno)
     }
 
     lateinit var dataBase: AppDataBase
@@ -59,6 +59,7 @@ class Alunos_list : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alunos_list)
 
+        listFromDataBase()
 
 
         // Configura o RecyclerView
@@ -82,12 +83,6 @@ class Alunos_list : AppCompatActivity() {
     }
 
 
-    /* private fun insertIntoDataBase(aluno: Aluno) {
-         CoroutineScope(IO).launch {
-             daoAluno.insert(aluno)
-             listFromDataBase()
-         }
-     }*/
 
     private fun deleteAll() {
         val alunoAction = AlunoAction(null, ActionTypeAluno.DELETE_ALL.name)
@@ -108,7 +103,7 @@ class Alunos_list : AppCompatActivity() {
 
     }
 
-    private fun onListItemClicked(aluno: Aluno) {
+    private fun onListItemClickedAluno(aluno: Aluno) {
         openAlunoListDetail(aluno)
     }
 

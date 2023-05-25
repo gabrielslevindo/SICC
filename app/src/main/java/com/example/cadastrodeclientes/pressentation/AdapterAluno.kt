@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cadastrodeclientes.Data.Aluno
+import kotlin.reflect.KFunction1
 
 class AdapterAluno(
 
-     private val openAlunoDetailView:(aluno: Aluno) -> Unit
+     private val openAlunoDetailView: KFunction1<Aluno, Unit>
  ) :
      ListAdapter<Aluno, AlunoViewHolder>(AdapterAluno){
-     private var listAluno: List<Aluno> = emptyList()
+
+    private  var listAluno : List<Aluno> = emptyList()
+
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlunoViewHolder {
          val view: View = LayoutInflater
              .from(parent.context)

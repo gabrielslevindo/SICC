@@ -71,8 +71,8 @@ class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
         fun create(application: Application): AlunoViewModel {
 
             val dataBaseInstance = (application as SIECAplication).getAppDataBase()
-            val dao = dataBaseInstance.DAOAluno()
-            return AlunoViewModel(dao)
+            val daoalun = dataBaseInstance.DAOAluno()
+            return AlunoViewModel(daoalun)
 
 
         }

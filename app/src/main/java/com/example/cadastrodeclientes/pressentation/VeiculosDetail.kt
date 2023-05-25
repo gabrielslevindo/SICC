@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import com.example.cadastrodeclientes.Data.Fornecedor
 import com.example.cadastrodeclientes.Data.Veiculo
 import com.example.cadastrodeclientes.R
 import com.google.android.material.snackbar.Snackbar
@@ -34,7 +33,7 @@ class VeiculosDetail : AppCompatActivity() {
         fun start(context: Context, veiculo: Veiculo?): Intent {
 
 
-            val intent = Intent(context, Alunos_list::class.java)
+            val intent = Intent(context, VeiculosDetail::class.java)
 
                 .apply {
 

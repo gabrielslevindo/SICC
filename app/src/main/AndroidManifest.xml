@@ -15,6 +15,10 @@
         <activity
             android:name=".pressentation.FornecedoresDetail"
             android:exported="false" />
+
+        <activity
+            android:name=".pressentation.VeiculosDetail"
+            android:exported="false" />
         <activity
             android:name=".pressentation.AlunosDetail"
             android:exported="false" />

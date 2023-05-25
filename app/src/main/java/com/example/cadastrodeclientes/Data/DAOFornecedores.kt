@@ -1,5 +1,6 @@
 package com.example.cadastrodeclientes.Data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -9,7 +10,7 @@ interface DAOFornecedores {
     fun insert(fornecedor: Fornecedor)
 
     @Query("Select * from fornecedor")
-    fun getAll(): List<Fornecedor>
+    fun getAll():LiveData <List<Fornecedor>>
 
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -22,5 +23,5 @@ interface DAOFornecedores {
 
     //deleta pelo id
     @Query("DELETE from fornecedor WHERE id = :id ")
-    fun deleteById(id: Int)
+    fun deleteById(id:Int)
 }

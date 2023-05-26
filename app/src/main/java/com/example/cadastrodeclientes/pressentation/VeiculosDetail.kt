@@ -120,7 +120,7 @@ class VeiculosDetail : AppCompatActivity() {
 
         val inflater: MenuInflater = menuInflater
 
-        inflater.inflate(R.menu.fornecedordetailmenu, menu)
+        inflater.inflate(R.menu.veiculodetailmenu, menu)
 
         return true
     }

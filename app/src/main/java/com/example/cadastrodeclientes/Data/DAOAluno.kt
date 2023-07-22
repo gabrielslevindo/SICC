@@ -8,22 +8,22 @@ import androidx.room.*
 interface DAOAluno {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(aluno: Aluno)
+  fun insert(aluno: Aluno)
 
     @Query("Select * from aluno")
     fun getAll():LiveData<List<Aluno>>
 
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(aluno: Aluno)
+  fun update(aluno: Aluno)
 
 
     //deleta todas
     @Query("DELETE from aluno")
-    fun deleteAll()
+   fun deleteAll()
 
     //deleta pelo id
     @Query("DELETE from aluno WHERE id = :id ")
-    fun deleteById(id: Int)
+ fun deleteById(id: Int)
 
 }

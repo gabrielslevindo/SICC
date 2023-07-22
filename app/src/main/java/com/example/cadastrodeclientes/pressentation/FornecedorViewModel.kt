@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.cadastrodeclientes.Data.DAOFornecedores
 import com.example.cadastrodeclientes.Data.Fornecedor
 import com.example.cadastrodeclientes.SIECAplication
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FornecedorViewModel(private val FornecedorDao:DAOFornecedores):ViewModel() {
+class FornecedorViewModel(private val FornecedorDao:DAOFornecedores,
+private val dispacher: CoroutineDispatcher = Dispatchers.IO
+                          ):ViewModel() {
 
     val FornecedorListLiveData: LiveData<List<Fornecedor>> = FornecedorDao.getAll()
 
@@ -27,7 +30,7 @@ class FornecedorViewModel(private val FornecedorDao:DAOFornecedores):ViewModel()
 
     private fun deleteAll() { // deletar todos
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
 
             FornecedorDao.deleteAll()
@@ -35,7 +38,7 @@ class FornecedorViewModel(private val FornecedorDao:DAOFornecedores):ViewModel()
     }
     private fun deleteById(id: Int) { // deletar todos
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
             FornecedorDao.deleteById(id)
 
@@ -46,7 +49,7 @@ class FornecedorViewModel(private val FornecedorDao:DAOFornecedores):ViewModel()
     private fun insertIntoDataBase(fornecedor: Fornecedor) { // inserir na base de dados
 
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
 
            FornecedorDao.insert(fornecedor)
@@ -56,7 +59,7 @@ class FornecedorViewModel(private val FornecedorDao:DAOFornecedores):ViewModel()
 
     private fun updateIntoDataBase(fornecedor: Fornecedor) { // fazer o update
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
             FornecedorDao.update(fornecedor)
 

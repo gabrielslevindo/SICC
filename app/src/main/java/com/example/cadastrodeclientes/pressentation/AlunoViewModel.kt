@@ -7,10 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.cadastrodeclientes.Data.Aluno
 import com.example.cadastrodeclientes.Data.DAOAluno
 import com.example.cadastrodeclientes.SIECAplication
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
+class AlunoViewModel (private val AlunoDao: DAOAluno,
+ private val dispacher: CoroutineDispatcher = Dispatchers.IO
+
+) : ViewModel(){
 
 
     val AlunoListLiveData: LiveData<List<Aluno>> = AlunoDao.getAll()
@@ -28,7 +32,7 @@ class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
 
     private fun deleteAll() { // deletar todos
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
 
             AlunoDao.deleteAll()
@@ -36,7 +40,7 @@ class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
     }
     private fun deleteById(id: Int) { // deletar todos
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher){
 
             AlunoDao.deleteById(id)
 
@@ -47,7 +51,7 @@ class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
     private fun insertIntoDataBase(aluno: Aluno) { // inserir na base de dados
 
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispacher) {
 
 
             AlunoDao.insert(aluno)
@@ -57,7 +61,7 @@ class AlunoViewModel (private val AlunoDao: DAOAluno) : ViewModel(){
 
     private fun updateIntoDataBase(aluno: Aluno) { // fazer o update
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch (dispacher){
 
             AlunoDao.update(aluno)
 

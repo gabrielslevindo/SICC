@@ -12,7 +12,7 @@ Visando Buscar mais conhecimento e experiência, em paralelo as minhas aulas no 
 * MVVM Architecture
 * LiveData
 * Room database
-* Teste unitário.
+* Mockito
 
 ## TODO
 
